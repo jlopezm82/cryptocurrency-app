@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import CryptocurrencyForm from './CryptocurrencyForm';
 import Quotation from './Quotation';
+import Header from './Header';
+import Footer from './Footer';
 import { API_URL } from '../config';
 
 function Main() {
@@ -32,11 +34,7 @@ function Main() {
 
   return (
     <div className="container">
-      <div className="row">
-        <div className="col-md">
-          <h1>Hello cryptocurrency app</h1>
-        </div>
-      </div>
+      <Header />
       <div className="row">
         <div className="col-md-6">
           <CryptocurrencyForm
@@ -50,6 +48,7 @@ function Main() {
           <Quotation result={result} />
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
