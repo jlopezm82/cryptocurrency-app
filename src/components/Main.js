@@ -36,17 +36,13 @@ function Main() {
     <div className="container">
       <Header />
       <div className="row">
-        <div className="col-md-6">
-          <CryptocurrencyForm
-            setCurrency={setCurrency}
-            setCryptocurrency={setCryptocurrency}
-          />
-        </div>
+        <CryptocurrencyForm
+          setCurrency={setCurrency}
+          setCryptocurrency={setCryptocurrency}
+        />
       </div>
       <div className="row">
-        <div className="col-md-6">
-          <Quotation result={result} />
-        </div>
+        <Quotation result={result} />
       </div>
       <Footer />
     </div>
