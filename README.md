@@ -2,7 +2,45 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
-In the project directory, you can run:
+### 1. Install json-server
+
+### `mkdir json-mock-api`
+
+### `cd json-mock-api`
+
+### Create db.json file with the following information
+{
+    "cryptocurrencies": [
+        { "id": 0, "code": "BTC", "name": "Bitcoin" },
+        { "id": 1, "code": "TNCC", "name": "TNC Coin" },
+        { "id": 2, "code": "ETH", "name": "Ethereum" },
+        { "id": 3, "code": "XRP", "name": "XRP" }
+    ],
+    "prices": [
+        { "code": "BTC", "currency": "USD", "price": "$ 10.000.32" },
+        { "code": "BTC", "currency": "COP", "price": "COP 10.000" },
+        { "code": "BTC", "currency": "MXN", "price": "MXN 10.000.01" },
+        { "code": "BTC", "currency": "EUR", "price": "€ 11.000.04" },
+        { "code": "TNCC", "currency": "USD", "price": "$ 20.000.32" },
+        { "code": "TNCC", "currency": "COP", "price": "COP 20.000" },
+        { "code": "TNCC", "currency": "MXN", "price": "MXN 20.000.01" },
+        { "code": "TNCC", "currency": "EUR", "price": "€ 21.000.04" },
+        { "code": "ETH", "currency": "USD", "price": "$ 30.000.32" },
+        { "code": "ETH", "currency": "COP", "price": "COP 30.000" },
+        { "code": "ETH", "currency": "MXN", "price": "MXN 30.000.01" },
+        { "code": "ETH", "currency": "EUR", "price": "€ 31.000.04" },
+        { "code": "XRP", "currency": "USD", "price": "$ 40.000.32" },
+        { "code": "XRP", "currency": "COP", "price": "COP 40.000" },
+        { "code": "XRP", "currency": "MXN", "price": "MXN 40.000.01" },
+        { "code": "XRP", "currency": "EUR", "price": "€ 41.000.04" }
+    ]
+}
+
+### `npx json-server db.json --port 3004`
+
+Start the server to mock API
+
+### 2. In the project directory, you can run:
 
 ### `npm start`
 
