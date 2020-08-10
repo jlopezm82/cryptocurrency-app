@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Error from './Error'
 import useCurrency from '../hooks/useCurrency';
 import useCryptocurrency from '../hooks/useCryptocurrency';
+import { API_URL } from '../config';
 
 
 function CryptocurrencyForm({ setCurrency, setCryptocurrency }) {
@@ -27,7 +28,7 @@ function CryptocurrencyForm({ setCurrency, setCryptocurrency }) {
   // call API
   useEffect(() => {
     const callAPI = async () => {
-      const url = 'http://localhost:3004/cryptocurrencies';
+      const url = `${API_URL}/cryptocurrencies`;
       await fetch(url, {
         method: 'GET'
       })

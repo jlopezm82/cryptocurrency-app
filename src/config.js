@@ -1,0 +1,4 @@
+/**
+ * BASE URL
+ */
+export const API_URL = 'http://localhost:3004';

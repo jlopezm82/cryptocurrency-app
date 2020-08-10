@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import CryptocurrencyForm from './CryptocurrencyForm';
 import Quotation from './Quotation';
+import { API_URL } from '../config';
 
 function Main() {
 
@@ -14,7 +15,7 @@ function Main() {
       // prevent first execution
       if( currency === '' ) return;
 
-      const url = `http://localhost:3004/prices?code=${cryptocurrency}&currency=${currency}`;
+      const url = `${API_URL}/prices?code=${cryptocurrency}&currency=${currency}`;
       await fetch(url, {
         method: 'GET'
       })
