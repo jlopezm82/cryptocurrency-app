@@ -22,5 +22,8 @@
         { "code": "XRP", "currency": "COP", "price": "COP 40.000" },
         { "code": "XRP", "currency": "MXN", "price": "MXN 40.000.01" },
         { "code": "XRP", "currency": "EUR", "price": "€ 41.000.04" }
+    ],
+    "requests": [
+
     ]
 }
