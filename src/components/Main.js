@@ -3,6 +3,7 @@ import CryptocurrencyForm from './CryptocurrencyForm';
 import Quotation from './Quotation';
 import Header from './Header';
 import Footer from './Footer';
+import RequestForm from './RequestForm';
 import { API_URL } from '../config';
 
 function Main() {
@@ -43,6 +44,9 @@ function Main() {
       </div>
       <div className="row">
         <Quotation result={result} />
+      </div>
+      <div className="row">
+        { result.price ? <RequestForm currency={currency} quotedValue={result.price} cryptocurrency={cryptocurrency} /> : null }
       </div>
       <Footer />
     </div>
