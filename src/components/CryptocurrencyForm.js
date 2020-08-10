@@ -57,6 +57,7 @@ function CryptocurrencyForm({ setCurrency, setCryptocurrency }) {
 
   return(
     <div className="col-md-6">
+      <h3>Currencies</h3>
       <form onSubmit={quoteCurrency}>
         <div className="form-group">
           { error ? <Error message="You must select both" /> : null }
