@@ -6,6 +6,10 @@ import Footer from './Footer';
 import RequestForm from './RequestForm';
 import { API_URL } from '../config';
 
+// Redux
+import { Provider } from 'react-redux';
+import store from '../store';
+
 function Main() {
 
   const [ currency, setCurrency ] = useState('');
@@ -34,22 +38,24 @@ function Main() {
   }, [currency, cryptocurrency]);
 
   return (
-    <div className="container">
-      <Header />
-      <div className="row">
-        <CryptocurrencyForm
-          setCurrency={setCurrency}
-          setCryptocurrency={setCryptocurrency}
-        />
+    <Provider store={store} >
+      <div className="container">
+        <Header />
+        <div className="row">
+          <CryptocurrencyForm
+            setCurrency={setCurrency}
+            setCryptocurrency={setCryptocurrency}
+          />
+        </div>
+        <div className="row">
+          <Quotation result={result} />
+        </div>
+        <div className="row">
+          { result.price ? <RequestForm currency={currency} quotedValue={result.price} cryptocurrency={cryptocurrency} /> : null }
+        </div>
+        <Footer />
       </div>
-      <div className="row">
-        <Quotation result={result} />
-      </div>
-      <div className="row">
-        { result.price ? <RequestForm currency={currency} quotedValue={result.price} cryptocurrency={cryptocurrency} /> : null }
-      </div>
-      <Footer />
-    </div>
+    </Provider>
   );
 }
 

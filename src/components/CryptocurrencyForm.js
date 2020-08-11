@@ -3,13 +3,13 @@ import React, { useEffect, useState } from 'react';
 import Error from './Error'
 import useCurrency from '../hooks/useCurrency';
 import useCryptocurrency from '../hooks/useCryptocurrency';
-import { API_URL } from '../config';
 
+// Redux
+import { useDispatch, useSelector } from 'react-redux';
+import { getCryptocurrenciesAction } from '../actions/cryptocurrencyActions';
 
 function CryptocurrencyForm({ setCurrency, setCryptocurrency }) {
 
-  // state cryptocurrencies list
-  const [ cryptocurenciesList, setCryptocurrencies ] = useState([]);
   const [ error, setError ] = useState(false);
 
   const CURRENCIES = [
@@ -21,25 +21,6 @@ function CryptocurrencyForm({ setCurrency, setCryptocurrency }) {
 
   // use useCurrency
   const [ currency, SelectCurrency ] = useCurrency('Currency', '', CURRENCIES);
-
-  // use useCryptocurrency
-  const [ cryptocurrency, SelectCryptocurrency ] = useCryptocurrency('Criptocurrency', '', cryptocurenciesList);
-
-  // call API
-  useEffect(() => {
-    const callAPI = async () => {
-      const url = `${API_URL}/cryptocurrencies`;
-      await fetch(url, {
-        method: 'GET'
-      })
-      .then(response => response.json())
-      .then(response => {
-        setCryptocurrencies(response)
-      })
-      .catch(error => console.log(error));
-    }
-    callAPI();
-  }, []);
 
   const quoteCurrency = event => {
     event.preventDefault();
@@ -55,9 +36,33 @@ function CryptocurrencyForm({ setCurrency, setCryptocurrency }) {
     setCryptocurrency(cryptocurrency);
   }
 
+  /** TODO
+   *  implementing Redux
+   * */
+  const dispatch = useDispatch();
+
+  useEffect( () => {
+    // Call API
+    const loadCryptocurrencies = () => dispatch( getCryptocurrenciesAction() );
+    loadCryptocurrencies();
+  }, [] );
+
+  // get state
+  const cryptocurrencies = useSelector( state => state.cryptocurrencies.cryptocurrencies );
+  // use useCryptocurrency
+  const [ cryptocurrency, SelectCryptocurrency ] = useCryptocurrency('Criptocurrency', '', cryptocurrencies);
+
+  const errorCallingAPI = useSelector( state => state.cryptocurrencies.error );
+  const loading = useSelector( state => state.cryptocurrencies.loading );
+
   return(
     <div className="col-md-6">
       <h3>Currencies</h3>
+
+      { errorCallingAPI ? <p className="font-weight-bold alert alert-danger text-center mt-4">There was an error calling API</p> : null }
+
+      { loading ? <p className="text-center">Loading...</p> : null }
+
       <form onSubmit={quoteCurrency}>
         <div className="form-group">
           { error ? <Error message="You must select both" /> : null }
