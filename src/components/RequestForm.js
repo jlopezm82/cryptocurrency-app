@@ -60,85 +60,91 @@ const RequestForm = () => {
 
   return (
     <div className="col-md-6">
-      <h3>Request</h3>
-      { saved ? <Message text="Request saved in http://localhost:3004/requests" /> : null }
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="fullName">Full Name</label>
-          <input
-            id="fullName"
-            className="form-control"
-            placeholder="Enter full name"
-            type="text"
-            name="fullName"
-            onChange={event => setFullName(event.target.value)}
-            required
-          />
+      <div className="card">
+        <div className="card-body">
+          <h3 className="text-center mb-4 font-weight-bold">Request</h3>
+
+          { saved ? <Message text="Request saved in http://localhost:3004/requests" /> : null }
+
+          <form onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label htmlFor="fullName">Full Name</label>
+              <input
+                id="fullName"
+                className="form-control"
+                placeholder="Enter full name"
+                type="text"
+                name="fullName"
+                onChange={event => setFullName(event.target.value)}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="identification">Identification</label>
+              <input
+                id="identification"
+                className="form-control"
+                placeholder="Enter identification"
+                type="number"
+                min="0"
+                name="identification"
+                onChange={event => setIdentification(event.target.value)}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="currencySelected">Currency Selected</label>
+              <input
+                id="currencySelected"
+                className="form-control"
+                placeholder="--"
+                type="text"
+                value={currency || ''}
+                name="currencySelected"
+                readOnly
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="quotedValue">Quoted Value</label>
+              <input
+                id="quotedValue"
+                className="form-control"
+                placeholder="--"
+                value={quotedValue || ''}
+                type="text"
+                name="quotedValue"
+                readOnly
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="cryptocurrencySelected">Cryptocurrency Selected</label>
+              <input
+                id="cryptocurrencySelected"
+                className="form-control"
+                placeholder="--"
+                type="text"
+                value={cryptocurrency || ''}
+                name="cryptocurrencySelected"
+                readOnly
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="birthday">Birthday</label>
+              <input
+                id="birthday"
+                className="form-control"
+                type="date"
+                name="birthday"
+                onChange={event => setBirthday(event.target.value)}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <button type="submit" className="btn btn-primary d-block w-100">Save</button>
+            </div>
+          </form>
         </div>
-        <div className="form-group">
-          <label htmlFor="identification">Identification</label>
-          <input
-            id="identification"
-            className="form-control"
-            placeholder="Enter identification"
-            type="number"
-            min="0"
-            name="identification"
-            onChange={event => setIdentification(event.target.value)}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="currencySelected">Currency Selected</label>
-          <input
-            id="currencySelected"
-            className="form-control"
-            placeholder="--"
-            type="text"
-            value={currency || ''}
-            name="currencySelected"
-            readOnly
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="quotedValue">Quoted Value</label>
-          <input
-            id="quotedValue"
-            className="form-control"
-            placeholder="--"
-            value={quotedValue || ''}
-            type="text"
-            name="quotedValue"
-            readOnly
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="cryptocurrencySelected">Cryptocurrency Selected</label>
-          <input
-            id="cryptocurrencySelected"
-            className="form-control"
-            placeholder="--"
-            type="text"
-            value={cryptocurrency || ''}
-            name="cryptocurrencySelected"
-            readOnly
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="birthday">Birthday</label>
-          <input
-            id="birthday"
-            className="form-control"
-            type="date"
-            name="birthday"
-            onChange={event => setBirthday(event.target.value)}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <button type="submit" className="btn btn-primary">Save</button>
-        </div>
-      </form>
+      </div>
     </div>
   );
 }

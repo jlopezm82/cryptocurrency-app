@@ -73,7 +73,7 @@ function CryptocurrencyForm() {
               <SelectCryptocurrency />
             </div>
             <div className="form-group">
-              <button type="submit" className="btn btn-primary btn d-block w-100">Quote</button>
+              <button type="submit" className="btn btn-primary d-block w-100">Quote</button>
             </div>
           </form>
         </div>
