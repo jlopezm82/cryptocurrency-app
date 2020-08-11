@@ -3,7 +3,6 @@ import CryptocurrencyForm from './CryptocurrencyForm';
 import Quotation from './Quotation';
 import Header from './Header';
 import Footer from './Footer';
-import RequestForm from './RequestForm';
 
 // Redux
 import { Provider } from 'react-redux';
@@ -18,12 +17,7 @@ function Main() {
         <div className="row">
           <CryptocurrencyForm />
         </div>
-        <div className="row">
-          <Quotation />
-        </div>
-        <div className="row">
-          <RequestForm />
-        </div>
+        <Quotation />
         <Footer />
       </div>
     </Provider>

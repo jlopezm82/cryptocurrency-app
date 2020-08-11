@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import RequestForm from './RequestForm';
 
 const Quotation = () => {
 
@@ -9,11 +10,18 @@ const Quotation = () => {
   if( Object.keys(cryptocurrencyPrice).length === 0) return null;
 
   return(
-    <div className="col-md-6">
-      <div className="alert alert-primary" role="alert">
-        The Price is: {cryptocurrencyPrice.price}
+    <>
+      <div className="row">
+        <div className="col-md-6">
+          <div className="alert alert-primary" role="alert">
+            The Price is: {cryptocurrencyPrice.price}
+          </div>
+        </div>
       </div>
-    </div>
+      <div className="row">
+        <RequestForm />
+      </div>
+    </>
   );
 }
 

@@ -19,10 +19,6 @@ function CryptocurrencyForm() {
 
   const [ error, setError ] = useState(false);
 
-  const dispatch = useDispatch();
-
-  const getCryptocurrencyPriceByCurrency = (currency, cryptocurrency) => dispatch( getCryptocurrencyPriceByCurrencyAction(currency, cryptocurrency) );
-
   // get state
   const cryptocurrencies = useSelector( state => state.cryptocurrencies.cryptocurrencies );
   const errorCallingAPI = useSelector( state => state.cryptocurrencies.error );
@@ -32,6 +28,10 @@ function CryptocurrencyForm() {
   const [ cryptocurrency, SelectCryptocurrency ] = useCryptocurrency('Criptocurrency', '', cryptocurrencies);
   // use useCurrency
   const [ currency, SelectCurrency ] = useCurrency('Currency', '', CURRENCIES);
+
+  const dispatch = useDispatch();
+
+  const getCryptocurrencyPriceByCurrency = (currency, cryptocurrency) => dispatch( getCryptocurrencyPriceByCurrencyAction(currency, cryptocurrency) );
 
   const quoteCurrency = event => {
     event.preventDefault();
