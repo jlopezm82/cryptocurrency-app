@@ -54,26 +54,30 @@ function CryptocurrencyForm() {
 
   return(
     <div className="col-md-6">
-      <h3>Currencies</h3>
+      <div className="card">
+        <div className="card-body">
+          <h3 className="text-center mb-4 font-weight-bold">Currencies</h3>
 
-      { errorCallingAPI ? <p className="font-weight-bold alert alert-danger text-center mt-4">There was an error calling API</p> : null }
+          { errorCallingAPI ? <p className="font-weight-bold alert alert-danger text-center mt-4">There was an error calling API</p> : null }
 
-      { loading ? <p className="text-center">Loading...</p> : null }
+          { loading ? <p className="text-center">Loading...</p> : null }
 
-      <form onSubmit={quoteCurrency}>
-        <div className="form-group">
-          { error ? <Error message="You must select both" /> : null }
+          <form onSubmit={quoteCurrency}>
+            <div className="form-group">
+              { error ? <Error message="You must select both" /> : null }
+            </div>
+            <div className="form-group">
+              <SelectCurrency />
+            </div>
+            <div className="form-group">
+              <SelectCryptocurrency />
+            </div>
+            <div className="form-group">
+              <button type="submit" className="btn btn-primary btn d-block w-100">Quote</button>
+            </div>
+          </form>
         </div>
-        <div className="form-group">
-          <SelectCurrency />
-        </div>
-        <div className="form-group">
-          <SelectCryptocurrency />
-        </div>
-        <div className="form-group">
-          <button type="submit" className="btn btn-primary">Quote</button>
-        </div>
-      </form>
+      </div>
     </div>
   )
 }

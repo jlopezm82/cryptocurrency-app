@@ -14,7 +14,7 @@ function Main() {
     <Provider store={store} >
       <div className="container">
         <Header />
-        <div className="row">
+        <div className="row justify-content-center">
           <CryptocurrencyForm />
         </div>
         <Quotation />

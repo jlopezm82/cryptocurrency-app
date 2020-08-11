@@ -52,7 +52,6 @@ export function getCryptocurrencyPriceByCurrencyAction(currency, cryptocurrency)
       })
       .then(response => response.json())
       .then(response => {
-        //setResult(response[0])
         dispatch( downloadCryptocurrencyPriceSuccess(response[0]) );
       })
       .catch(error => dispatch( downloadCryptocurrencyPriceError() ) );
