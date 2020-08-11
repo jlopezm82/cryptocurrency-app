@@ -6,11 +6,9 @@ import useCryptocurrency from '../hooks/useCryptocurrency';
 
 // Redux
 import { useDispatch, useSelector } from 'react-redux';
-import { getCryptocurrenciesAction } from '../actions/cryptocurrencyActions';
+import { getCryptocurrenciesAction, getCryptocurrencyPriceByCurrencyAction } from '../actions/cryptocurrencyActions';
 
-function CryptocurrencyForm({ setCurrency, setCryptocurrency }) {
-
-  const [ error, setError ] = useState(false);
+function CryptocurrencyForm() {
 
   const CURRENCIES = [
     { code: 'USD', name: 'United States Dollar' },
@@ -19,6 +17,19 @@ function CryptocurrencyForm({ setCurrency, setCryptocurrency }) {
     { code: 'EUR', name: 'Euro' }
   ];
 
+  const [ error, setError ] = useState(false);
+
+  const dispatch = useDispatch();
+
+  const getCryptocurrencyPriceByCurrency = (currency, cryptocurrency) => dispatch( getCryptocurrencyPriceByCurrencyAction(currency, cryptocurrency) );
+
+  // get state
+  const cryptocurrencies = useSelector( state => state.cryptocurrencies.cryptocurrencies );
+  const errorCallingAPI = useSelector( state => state.cryptocurrencies.error );
+  const loading = useSelector( state => state.cryptocurrencies.loading );
+
+  // use useCryptocurrency
+  const [ cryptocurrency, SelectCryptocurrency ] = useCryptocurrency('Criptocurrency', '', cryptocurrencies);
   // use useCurrency
   const [ currency, SelectCurrency ] = useCurrency('Currency', '', CURRENCIES);
 
@@ -30,30 +41,16 @@ function CryptocurrencyForm({ setCurrency, setCryptocurrency }) {
       return;
     }
 
-    // pass data to main component
     setError(false);
-    setCurrency(currency);
-    setCryptocurrency(cryptocurrency);
-  }
 
-  /** TODO
-   *  implementing Redux
-   * */
-  const dispatch = useDispatch();
+    getCryptocurrencyPriceByCurrency(currency, cryptocurrency);
+  }
 
   useEffect( () => {
     // Call API
     const loadCryptocurrencies = () => dispatch( getCryptocurrenciesAction() );
     loadCryptocurrencies();
   }, [] );
-
-  // get state
-  const cryptocurrencies = useSelector( state => state.cryptocurrencies.cryptocurrencies );
-  // use useCryptocurrency
-  const [ cryptocurrency, SelectCryptocurrency ] = useCryptocurrency('Criptocurrency', '', cryptocurrencies);
-
-  const errorCallingAPI = useSelector( state => state.cryptocurrencies.error );
-  const loading = useSelector( state => state.cryptocurrencies.loading );
 
   return(
     <div className="col-md-6">

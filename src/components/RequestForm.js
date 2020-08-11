@@ -1,13 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { API_URL } from '../config';
 import Message from './Message';
 
-const RequestForm = ({ currency, quotedValue, cryptocurrency }) => {
+// redux
+import { useSelector } from 'react-redux';
+
+const RequestForm = () => {
+
+  // redux
+  // get state
+  const cryptocurrencyPrice = useSelector( state => state.cryptocurrencies.cryptocurrencyPrice );
 
   const [ fullName, setFullName ] = useState('');
   const [ identification, setIdentification ] = useState('');
   const [ birthday, setBirthday ] = useState('');
   const [ saved, setSaved ] = useState(false);
+
+  const [ currency, setCurrency] = useState('');
+  const [ quotedValue, setQuotedValue] = useState('');
+  const [ cryptocurrency, setCryptocurrency] = useState('');
+
+  useEffect(() => {
+    setCurrency(cryptocurrencyPrice.currency);
+    setQuotedValue(cryptocurrencyPrice.price);
+    setCryptocurrency(cryptocurrencyPrice.code);
+  }, [cryptocurrencyPrice] );
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -78,7 +95,7 @@ const RequestForm = ({ currency, quotedValue, cryptocurrency }) => {
             className="form-control"
             placeholder="--"
             type="text"
-            value={currency}
+            value={currency || ''}
             name="currencySelected"
             readOnly
           />
@@ -102,7 +119,7 @@ const RequestForm = ({ currency, quotedValue, cryptocurrency }) => {
             className="form-control"
             placeholder="--"
             type="text"
-            value={cryptocurrency}
+            value={cryptocurrency || ''}
             name="cryptocurrencySelected"
             readOnly
           />

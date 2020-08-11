@@ -1,13 +1,17 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
-const Quotation = ({ result }) => {
+const Quotation = () => {
 
-  if( Object.keys(result).length === 0) return null;
+  // redux get state
+  const cryptocurrencyPrice = useSelector( state => state.cryptocurrencies.cryptocurrencyPrice );
+
+  if( Object.keys(cryptocurrencyPrice).length === 0) return null;
 
   return(
     <div className="col-md-6">
       <div className="alert alert-primary" role="alert">
-        The Price is: {result.price}
+        The Price is: {cryptocurrencyPrice.price}
       </div>
     </div>
   );
